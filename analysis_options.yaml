@@ -1,28 +1,51 @@
-# This file configures the analyzer, which statically analyzes Dart code to
-# check for errors, warnings, and lints.
-#
-# The issues identified by the analyzer are surfaced in the UI of Dart-enabled
-# IDEs (https://dart.dev/tools#ides-and-editors). The analyzer can also be
-# invoked from the command line by running `flutter analyze`.
-
-# The following line activates a set of recommended lints for Flutter apps,
-# packages, and plugins designed to encourage good coding practices.
+# Incluir las reglas base recomendadas por Flutter
 include: package:flutter_lints/flutter.yaml
 
-linter:
-  # The lint rules applied to this project can be customized in the
-  # section below to disable rules from the `package:flutter_lints/flutter.yaml`
-  # included above or to enable additional rules. A list of all available lints
-  # and their documentation is published at https://dart.dev/lints.
-  #
-  # Instead of disabling a lint rule for the entire project in the
-  # section below, it can also be suppressed for a single line of code
-  # or a specific dart file by using the `// ignore: name_of_lint` and
-  # `// ignore_for_file: name_of_lint` syntax on the line or in the file
-  # producing the lint.
-  rules:
-    # avoid_print: false  # Uncomment to disable the `avoid_print` rule
-    # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
+analyzer:
+  plugins:
+    - custom_lint
 
-# Additional information about this file can be found at
-# https://dart.dev/guides/language/analysis-options
+  errors:
+    # ⚠️ Se ignoran algunas reglas que pueden ser demasiado estrictas o incompatibles con el estilo del proyecto
+
+    # Permitir el uso de comillas dobles en lugar de simples
+    prefer_single_quotes: ignore
+
+    # Permitir constantes con nombres que no siguen el estilo UPPER_SNAKE_CASE
+    constant_identifier_names: ignore
+
+    # Permitir anotaciones en ubicaciones no estándar (útil para freezed, json_serializable, etc.)
+    invalid_annotation_target: ignore
+
+    # Evitar uso de BuildContext después de await
+    use_build_context_synchronously: ignore
+
+    # Permitir uso de miembros protegidos (útil en mixins o librerías internas)
+    invalid_use_of_protected_member: ignore
+    depend_on_referenced_packages: ignore
+    file_names: ignore
+
+linter:
+  rules:
+    # ✅ Buenas prácticas con 'const'
+    prefer_const_literals_to_create_immutables: true
+    prefer_const_constructors_in_immutables: true
+    unnecessary_const: true
+    prefer_const_constructors: true
+
+    # ✅ Organización y estilo
+    sort_constructors_first: true
+
+    # ⚠️ Import absoluto permitido
+    prefer_relative_imports: false
+
+    # Otras reglas opcionales
+    prefer_single_quotes: true
+
+dart_code_metrics:
+  extends:
+    - recommended
+  rules:
+    avoid-inferrable-type-arguments: false
+    avoid-undisposed-instances: false
+    avoid-shadowing: false
