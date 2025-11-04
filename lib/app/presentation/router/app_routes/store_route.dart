@@ -5,17 +5,16 @@ import 'package:store_app/app/presentation/modules/store/cubit/store_cubit.dart'
 import 'package:store_app/app/presentation/modules/store/view/store_view.dart';
 
 class StoreRoute {
-  static const path = '/store';
+  static const path = '/api-list';
 
   static GoRoute get route {
     return GoRoute(
       path: path,
       name: path,
-      builder: (context, _) =>
-          BlocProvider(
-              create: (context) =>
-                  StoreCubit(context.read<ProductsRepository>()),
-              child: const StoreView()),
+      builder: (context, _) => BlocProvider(
+        create: (context) => StoreCubit(context.read<ProductsRepository>()),
+        child: const StoreView(),
+      ),
     );
   }
 }
