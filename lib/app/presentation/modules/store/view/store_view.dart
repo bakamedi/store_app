@@ -21,7 +21,10 @@ class _StoreViewState extends State<StoreView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Store')),
+      appBar: AppBar(
+        title: const Text('Store'),
+        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.search))],
+      ),
       body: StateBuilderGW<StoreCubit, StoreState>(
         isLoading: (state) => state is StoreLoading,
         isError: (state) => state is StoreError,
