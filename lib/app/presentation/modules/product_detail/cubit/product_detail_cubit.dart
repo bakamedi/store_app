@@ -6,6 +6,6 @@ class ProductDetailCubit extends Cubit<ProductDetailState> {
   ProductDetailCubit() : super(const ProductDetailState());
 
   void setProduct(ProductResponse product) {
-    emit(state.copyWith(status: ProductDetailStatus.success, product: product));
+    emit(state.copyWith(product: product));
   }
 }

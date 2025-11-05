@@ -7,11 +7,9 @@ class ProductDetailState extends Equatable {
   const ProductDetailState({
     this.status = ProductDetailStatus.initial,
     this.product,
-    this.errorMessage,
   });
   final ProductDetailStatus status;
   final ProductResponse? product;
-  final String? errorMessage;
 
   ProductDetailState copyWith({
     ProductDetailStatus? status,
@@ -21,10 +19,9 @@ class ProductDetailState extends Equatable {
     return ProductDetailState(
       status: status ?? this.status,
       product: product ?? this.product,
-      errorMessage: errorMessage ?? this.errorMessage,
     );
   }
 
   @override
-  List<Object?> get props => [status, product, errorMessage];
+  List<Object?> get props => [status, product];
 }

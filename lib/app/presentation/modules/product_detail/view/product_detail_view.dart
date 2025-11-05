@@ -25,16 +25,14 @@ class _ProductDetailContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Product Detail'),
-      ),
+      appBar: AppBar(title: const Text('Product Detail')),
       body: BlocBuilder<ProductDetailCubit, ProductDetailState>(
         builder: (context, state) {
           return StateBuilderGW<ProductDetailCubit, ProductDetailState>(
             isLoading: (state) => state.status == ProductDetailStatus.loading,
             isError: (state) => state.status == ProductDetailStatus.failure,
             loading: const CircularProgressIndicator().center,
-            error: Text(state.errorMessage ?? 'Error loading product').center,
+            error: const Text('Error loading product').center,
             builder: (context, state) {
               final product = state.product;
               if (product == null) {
