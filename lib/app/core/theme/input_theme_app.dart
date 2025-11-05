@@ -42,6 +42,10 @@ class InputThemeApp {
 
       // El campo ocupará menos espacio vertical
       isDense: true,
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: const BorderSide(color: Colors.redAccent, width: 0.5),
+      ),
       errorStyle: const TextStyle(
         color: Colors.redAccent,
         fontSize: 13,
