@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/app/presentation/global/extensions/widgets_ext.dart';
+import 'package:store_app/app/presentation/global/widgets/inputs/input_text_gw.dart';
 
 Future<String?> showTextInputBottomSheet(
   BuildContext context, {
@@ -29,16 +30,7 @@ Future<String?> showTextInputBottomSheet(
                 'Enter the Custom Title',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
-              TextField(
-                controller: controller,
-                cursorColor: Colors.black,
-                decoration: InputDecoration(
-                  labelText: null,
-                  hintText: labelText ?? 'Enter text',
-                  floatingLabelBehavior: FloatingLabelBehavior.never,
-                  border: const OutlineInputBorder(),
-                ),
-              ),
+              InputTextGW(controller: controller),
               ElevatedButton(
                 onPressed: () => Navigator.pop(context, controller.text),
                 child: const Text('Save'),

@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store_app/app/domain/repositories/favorites_repository.dart';
 import 'package:store_app/app/presentation/modules/favorites/cubit/favorites_state.dart';
 
+import 'package:store_app/app/domain/responses/product/product_response.dart';
+
 class FavoritesCubit extends Cubit<FavoritesState> {
   FavoritesCubit(this._favoritesRepository) : super(const FavoritesState());
 
@@ -28,6 +30,19 @@ class FavoritesCubit extends Cubit<FavoritesState> {
         );
       },
     );
+  }
+
+  Future<void> addFavorite(ProductResponse product, String customTitle) async {
+    try {
+      await _favoritesRepository.addFavorite(product, customTitle);
+    } catch (e) {
+      emit(
+        state.copyWith(
+          status: FavoritesStatus.failure,
+          errorMessage: e.toString(),
+        ),
+      );
+    }
   }
 
   @override
