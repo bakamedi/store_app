@@ -16,13 +16,20 @@ Este proyecto utiliza las siguientes librerías y paquetes para su funcionamient
 
 ### Dependencias Principales
 
+*   **`flutter`**: El framework principal para construir aplicaciones multiplataforma.
+*   **`cupertino_icons`**: Proporciona iconos estilo Apple para iOS.
 *   **`equatable`**: Simplifica las comprobaciones de igualdad de valores en Dart, comúnmente usado con BLoC/Cubit para la gestión de estados.
 *   **`flutter_bloc`**: Una popular librería de gestión de estados para Flutter, basada en el patrón BLoC (Business Logic Component).
 *   **`go_router`**: Un paquete de enrutamiento declarativo para Flutter, que simplifica la navegación.
+*   **`sembast`**: Un almacén persistente NoSQL para aplicaciones Dart, útil para el almacenamiento local de datos.
 *   **`dio`**: Un potente cliente HTTP para Dart, utilizado para realizar solicitudes de red a APIs.
+*   **`dotenv`**: Carga variables de entorno desde un archivo `.env`, útil para gestionar claves de API y otras configuraciones.
 *   **`json_annotation`**: Se utiliza con `json_serializable` para la serialización/deserialización automática de JSON.
 *   **`freezed_annotation`**: Se utiliza con `freezed` para generar clases de datos inmutables, uniones y clases selladas.
 *   **`drift`**: Una librería de persistencia reactiva para Flutter y Dart, construida sobre SQLite.
+*   **`sqlite3_flutter_libs`**: Proporciona la librería nativa de SQLite para Flutter.
+*   **`path_provider`**: Un plugin de Flutter para encontrar ubicaciones comunes en el sistema de archivos.
+*   **`path`**: Un paquete de Dart para manipular rutas de archivos.
 
 ### Dependencias de Desarrollo
 
@@ -33,7 +40,16 @@ Este proyecto utiliza las siguientes librerías y paquetes para su funcionamient
 *   **`json_serializable`**: Generador de código para `json_annotation`.
 *   **`drift_dev`**: Generador de código para `drift`.
 
+## Capturas de Pantalla
 
+| Listado de Productos | Detalle del Producto |
+| :---: | :---: |
+| ![Product Listing](assets/home.png) | ![Product Detail](assets/detail.png) |
+
+
+| Search de Productos | Favoritos |
+| :---: | :---: |
+| ![Product search](assets/search.png) | ![Product favorites](assets/favorites.png) |
 
 ## Cómo Empezar
 
@@ -128,4 +144,4 @@ Las contribuciones son lo que hacen de la comunidad de código abierto un lugar 
 
 ## Licencia
 
-Distribuido bajo la Licencia MIT. Consulta `LICENSE` para más información. (Nota: Es posible que necesites crear un archivo LICENSE si no tienes uno.)
+Distribuido bajo la Licencia MIT. Copyright (c) 2025 Bakke Medina Abarca. Consulta `LICENSE` para más información.
