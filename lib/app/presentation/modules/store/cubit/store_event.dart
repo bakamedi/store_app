@@ -12,9 +12,8 @@ class StoreInitial extends StoreState {}
 class StoreLoading extends StoreState {}
 
 class StoreLoaded extends StoreState {
-  final List<String> products;
-
   const StoreLoaded(this.products);
+  final List<String> products;
 
   @override
   List<Object> get props => [products];
@@ -25,9 +24,8 @@ class StoreLoaded extends StoreState {
 }
 
 class StoreError extends StoreState {
-  final String message;
-
   const StoreError(this.message);
+  final String message;
 
   @override
   List<Object> get props => [message];

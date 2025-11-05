@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store_app/app/core/network/dio_http_provider.dart';
 import 'package:store_app/app/core/network/http_client_repository.dart';
+import 'package:store_app/app/core/theme/theme_app.dart';
 import 'package:store_app/app/data/repository_impl/favorites_repository_impl.dart';
 import 'package:store_app/app/data/repository_impl/product_repository_impl.dart';
 import 'package:store_app/app/data/source/local/app_database.dart';
@@ -29,9 +30,7 @@ class MyApp extends StatelessWidget {
           create: (context) =>
               ProductRepositoryImpl(context.read<HttpClientRepository>()),
         ),
-        RepositoryProvider<AppDatabase>(
-          create: (_) => AppDatabase(),
-        ),
+        RepositoryProvider<AppDatabase>(create: (_) => AppDatabase()),
         RepositoryProvider<FavoriteProductsDao>(
           create: (context) => FavoriteProductsDao(context.read<AppDatabase>()),
         ),
@@ -42,6 +41,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp.router(
         routerConfig: goRouterProvider,
+        theme: ThemeApp.theme,
         title: 'Store App',
       ),
     );
