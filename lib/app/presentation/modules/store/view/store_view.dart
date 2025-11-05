@@ -75,9 +75,7 @@ class _StoreViewState extends State<StoreView> {
         title: const Text('Store'),
         actions: [
           IconButton(
-            onPressed: () {
-              context.read<StoreCubit>().startSearch();
-            },
+            onPressed: () => context.read<StoreCubit>().startSearch(),
             icon: const Icon(Icons.search),
           ),
           IconButton(
@@ -108,19 +106,17 @@ class _StoreViewState extends State<StoreView> {
                 itemCount: state.products.length,
                 itemBuilder: (context, index) {
                   final product = state.products[index];
-                  return InkWell(
+                  return ListTile(
                     onTap: () => GoRouter.of(
                       context,
                     ).push(ProductDetailRoute.path, extra: product),
-                    child: ListTile(
-                      leading: Image.network(
-                        product.image,
-                        width: 50,
-                        height: 50,
-                      ),
-                      title: Text(product.title),
-                      subtitle: Text('\$ ${product.price}'),
+                    leading: Image.network(
+                      product.image,
+                      width: 50,
+                      height: 50,
                     ),
+                    title: Text(product.title),
+                    subtitle: Text('\$ ${product.price}'),
                   );
                 },
               );
