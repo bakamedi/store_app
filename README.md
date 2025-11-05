@@ -38,6 +38,8 @@ Este proyecto utiliza las siguientes librerías y paquetes para su funcionamient
 
 ## Decisiones Técnicas
 
+**Tiempo de Desarrollo Estimado:** 18 horas.
+
 Durante el desarrollo de esta aplicación, se tomaron las siguientes decisiones técnicas clave para asegurar una arquitectura robusta, mantenible y escalable:
 
 ### Estructura del Proyecto
