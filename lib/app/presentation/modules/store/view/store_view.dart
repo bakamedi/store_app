@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:store_app/app/presentation/global/extensions/widgets_ext.dart';
 import 'package:store_app/app/presentation/global/widgets/scaffold/state_builder_gw.dart';
 import 'package:store_app/app/presentation/modules/store/cubit/store_cubit.dart';
 import 'package:store_app/app/presentation/modules/store/cubit/store_state.dart';
+import 'package:store_app/app/presentation/router/app_routes/product_detail_route.dart';
 
 class StoreView extends StatefulWidget {
   const StoreView({super.key});
@@ -101,14 +103,19 @@ class _StoreViewState extends State<StoreView> {
                 itemCount: state.products.length,
                 itemBuilder: (context, index) {
                   final product = state.products[index];
-                  return ListTile(
-                    leading: Image.network(
-                      product.image,
-                      width: 50,
-                      height: 50,
+                  return InkWell(
+                    onTap: () => GoRouter.of(
+                      context,
+                    ).push(ProductDetailRoute.path, extra: product),
+                    child: ListTile(
+                      leading: Image.network(
+                        product.image,
+                        width: 50,
+                        height: 50,
+                      ),
+                      title: Text(product.title),
+                      subtitle: Text('\$ ${product.price}'),
                     ),
-                    title: Text(product.title),
-                    subtitle: Text('\$ ${product.price}'),
                   );
                 },
               );
