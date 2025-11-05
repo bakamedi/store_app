@@ -6,6 +6,7 @@ import 'package:store_app/app/presentation/global/extensions/widgets_ext.dart';
 import 'package:store_app/app/presentation/global/widgets/scaffold/state_builder_gw.dart';
 import 'package:store_app/app/presentation/modules/store/cubit/store_cubit.dart';
 import 'package:store_app/app/presentation/modules/store/cubit/store_state.dart';
+import 'package:store_app/app/presentation/router/app_routes/favorites_list_route.dart';
 import 'package:store_app/app/presentation/router/app_routes/product_detail_route.dart';
 
 class StoreView extends StatefulWidget {
@@ -78,6 +79,10 @@ class _StoreViewState extends State<StoreView> {
               context.read<StoreCubit>().startSearch();
             },
             icon: const Icon(Icons.search),
+          ),
+          IconButton(
+            onPressed: () => GoRouter.of(context).push(FavoritesListRoute.path),
+            icon: const Icon(Icons.favorite),
           ),
         ],
       );
