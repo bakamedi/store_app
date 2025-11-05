@@ -8,6 +8,7 @@ part 'product_response.g.dart';
 abstract class ProductResponse with _$ProductResponse {
   const factory ProductResponse({
     required int id,
+    @Default('') String customTitle,
     required String title,
     required double price,
     required String description,

@@ -7,6 +7,7 @@ import 'package:store_app/app/presentation/global/utils/bottom_sheet_utils.dart'
 import 'package:store_app/app/presentation/global/widgets/scaffold/state_builder_gw.dart';
 import 'package:store_app/app/presentation/modules/product_detail/cubit/product_detail_cubit.dart';
 import 'package:store_app/app/presentation/modules/product_detail/cubit/product_detail_state.dart';
+import 'package:store_app/app/presentation/modules/product_detail/view/widgets/custom_title_w.dart';
 
 class ProductDetailView extends StatelessWidget {
   const ProductDetailView({super.key, required this.product});
@@ -71,6 +72,9 @@ class _ProductDetailContent extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    16.h,
+                    CustomTitleW(title: product.customTitle),
+                    16.h,
                     Image.network(product.image).center,
                     16.h,
                     Text(

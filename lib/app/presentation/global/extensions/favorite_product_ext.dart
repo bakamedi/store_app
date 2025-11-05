@@ -14,6 +14,7 @@ extension FavoriteProductX on FavoriteProduct {
       category: category,
       image: image,
       rating: RatingResponse(rate: rate, count: count),
+      customTitle: customTitle,
     );
   }
 }

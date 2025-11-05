@@ -27,7 +27,7 @@ class ProductDetailCubit extends Cubit<ProductDetailState> {
     if (state.isFavorite) {
       await _favoritesRepository.removeFavorite(state.product!.id);
     } else {
-      await _favoritesRepository.addFavorite(state.product!);
+      await _favoritesRepository.addFavorite(state.product!, customTitle);
     }
   }
 

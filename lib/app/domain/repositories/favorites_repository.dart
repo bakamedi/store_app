@@ -6,7 +6,7 @@ abstract class FavoritesRepository {
 
   Stream<bool> isFavorite(int productId);
 
-  Future<void> addFavorite(ProductResponse product);
+  Future<void> addFavorite(ProductResponse product, String customTitle);
 
   Future<void> removeFavorite(int productId);
 }

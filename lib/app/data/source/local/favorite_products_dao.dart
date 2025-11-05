@@ -15,9 +15,10 @@ class FavoriteProductsDao extends DatabaseAccessor<AppDatabase>
   Stream<List<FavoriteProduct>> watchAllFavorites() =>
       select(favoriteProducts).watch();
 
-  Future<void> addFavorite(ProductResponse productResp) {
+  Future<void> addFavorite(ProductResponse productResp, String customTitle) {
     return into(favoriteProducts).insert(
       FavoriteProductsCompanion(
+        customTitle: Value(customTitle),
         image: Value(productResp.image),
         description: Value(productResp.description),
         price: Value(productResp.price),

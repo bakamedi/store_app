@@ -13,8 +13,8 @@ class FavoritesRepositoryImpl implements FavoritesRepository {
       _favoriteProductsDao.watchAllFavorites();
 
   @override
-  Future<void> addFavorite(ProductResponse product) {
-    return _favoriteProductsDao.addFavorite(product);
+  Future<void> addFavorite(ProductResponse product, String customTitle) {
+    return _favoriteProductsDao.addFavorite(product, customTitle);
   }
 
   @override
