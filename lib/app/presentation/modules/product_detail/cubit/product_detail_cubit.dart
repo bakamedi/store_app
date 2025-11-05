@@ -6,7 +6,8 @@ import 'package:store_app/app/domain/responses/product/product_response.dart';
 import 'package:store_app/app/presentation/modules/product_detail/cubit/product_detail_state.dart';
 
 class ProductDetailCubit extends Cubit<ProductDetailState> {
-  ProductDetailCubit(this._favoritesRepository) : super(const ProductDetailState());
+  ProductDetailCubit(this._favoritesRepository)
+    : super(const ProductDetailState());
 
   final FavoritesRepository _favoritesRepository;
   StreamSubscription? _favoriteSubscription;
@@ -14,7 +15,9 @@ class ProductDetailCubit extends Cubit<ProductDetailState> {
   void setProduct(ProductResponse product) {
     emit(state.copyWith(product: product, status: ProductDetailStatus.success));
     _favoriteSubscription?.cancel();
-    _favoriteSubscription = _favoritesRepository.isFavorite(product.id).listen((isFavorite) {
+    _favoriteSubscription = _favoritesRepository.isFavorite(product.id).listen((
+      isFavorite,
+    ) {
       emit(state.copyWith(isFavorite: isFavorite));
     });
   }
@@ -24,7 +27,7 @@ class ProductDetailCubit extends Cubit<ProductDetailState> {
     if (state.isFavorite) {
       await _favoritesRepository.removeFavorite(state.product!.id);
     } else {
-      await _favoritesRepository.addFavorite(state.product!.id);
+      await _favoritesRepository.addFavorite(state.product!);
     }
   }
 

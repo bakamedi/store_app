@@ -1,5 +1,6 @@
 import 'package:drift/drift.dart';
 import 'package:store_app/app/data/source/local/app_database.dart';
+import 'package:store_app/app/domain/responses/product/product_response.dart';
 
 part 'favorite_products_dao.g.dart';
 
@@ -14,10 +15,19 @@ class FavoriteProductsDao extends DatabaseAccessor<AppDatabase>
   Stream<List<FavoriteProduct>> watchAllFavorites() =>
       select(favoriteProducts).watch();
 
-  Future<void> addFavorite(int productId) {
-    return into(
-      favoriteProducts,
-    ).insert(FavoriteProductsCompanion(productId: Value(productId)));
+  Future<void> addFavorite(ProductResponse productResp) {
+    return into(favoriteProducts).insert(
+      FavoriteProductsCompanion(
+        image: Value(productResp.image),
+        description: Value(productResp.description),
+        price: Value(productResp.price),
+        title: Value(productResp.title),
+        productId: Value(productResp.id),
+        category: Value(productResp.category),
+        count: Value(productResp.rating.count),
+        rate: Value(productResp.rating.rate),
+      ),
+    );
   }
 
   Future<void> removeFavorite(int productId) {

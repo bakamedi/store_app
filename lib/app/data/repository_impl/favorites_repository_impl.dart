@@ -1,6 +1,7 @@
 import 'package:store_app/app/data/source/local/app_database.dart';
 import 'package:store_app/app/data/source/local/favorite_products_dao.dart';
 import 'package:store_app/app/domain/repositories/favorites_repository.dart';
+import 'package:store_app/app/domain/responses/product/product_response.dart';
 
 class FavoritesRepositoryImpl implements FavoritesRepository {
   FavoritesRepositoryImpl(this._favoriteProductsDao);
@@ -8,11 +9,12 @@ class FavoritesRepositoryImpl implements FavoritesRepository {
   final FavoriteProductsDao _favoriteProductsDao;
 
   @override
-  Stream<List<FavoriteProduct>> get allFavorites => _favoriteProductsDao.watchAllFavorites();
+  Stream<List<FavoriteProduct>> get allFavorites =>
+      _favoriteProductsDao.watchAllFavorites();
 
   @override
-  Future<void> addFavorite(int productId) {
-    return _favoriteProductsDao.addFavorite(productId);
+  Future<void> addFavorite(ProductResponse product) {
+    return _favoriteProductsDao.addFavorite(product);
   }
 
   @override

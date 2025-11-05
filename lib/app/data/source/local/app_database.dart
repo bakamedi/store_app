@@ -12,6 +12,13 @@ part 'app_database.g.dart';
 class FavoriteProducts extends Table {
   IntColumn get id => integer().autoIncrement()();
   IntColumn get productId => integer()();
+  TextColumn get title => text()();
+  TextColumn get category => text()();
+  TextColumn get description => text()();
+  TextColumn get image => text()();
+  RealColumn get price => real()();
+  RealColumn get rate => real()();
+  IntColumn get count => integer()();
 }
 
 @DriftDatabase(tables: [FavoriteProducts], daos: [FavoriteProductsDao])
