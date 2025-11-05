@@ -19,6 +19,7 @@ class ThemeApp {
         cursorColor: Colors.white,
         selectionColor: Colors.black.withValues(alpha: 0.5),
       ),
+      cardTheme: CardThemeData(color: Colors.grey[50]),
       scaffoldBackgroundColor: Colors.white,
       inputDecorationTheme: InputThemeApp.inputDecorationTheme(),
       outlinedButtonTheme: ButtonThemeApp.outlinedButtonThemeData(),

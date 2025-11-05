@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:store_app/app/domain/repositories/favorites_repository.dart';
 import 'package:store_app/app/presentation/global/extensions/favorite_product_ext.dart';
 import 'package:store_app/app/presentation/global/extensions/widgets_ext.dart';
 import 'package:store_app/app/presentation/global/widgets/scaffold/state_builder_gw.dart';
@@ -15,11 +14,7 @@ class FavoritesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          FavoritesCubit(context.read<FavoritesRepository>())..fetchFavorites(),
-      child: const _FavoritesContent(),
-    );
+    return const _FavoritesContent();
   }
 }
 
@@ -33,7 +28,9 @@ class _FavoritesContent extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           final favoritesCubit = context.read<FavoritesCubit>();
-          GoRouter.of(context).push(AddFavoriteRoute.path, extra: favoritesCubit);
+          GoRouter.of(
+            context,
+          ).push(AddFavoriteRoute.path, extra: favoritesCubit);
         },
         child: const Icon(Icons.add),
       ),
@@ -46,9 +43,7 @@ class _FavoritesContent extends StatelessWidget {
                 state.status == FavoritesStatus.success &&
                 state.products.isEmpty,
             loading: const CircularProgressIndicator().center,
-            error: Text(
-              state.errorMessage ?? 'Error loading favorites',
-            ).center,
+            error: Text(state.errorMessage ?? 'Error loading favorites').center,
             empty: const Text('No favorite products found.').center,
             builder: (context, state) {
               return ListView.builder(

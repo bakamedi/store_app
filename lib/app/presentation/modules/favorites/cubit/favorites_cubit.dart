@@ -45,6 +45,19 @@ class FavoritesCubit extends Cubit<FavoritesState> {
     }
   }
 
+  Future<void> removeFavorite(int productId) async {
+    try {
+      await _favoritesRepository.removeFavorite(productId);
+    } catch (e) {
+      emit(
+        state.copyWith(
+          status: FavoritesStatus.failure,
+          errorMessage: e.toString(),
+        ),
+      );
+    }
+  }
+
   @override
   Future<void> close() {
     _favoritesSubscription?.cancel();
