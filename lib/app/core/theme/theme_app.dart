@@ -1,6 +1,8 @@
 // ignore_for_file: avoid-unused-parameters
 
 import 'package:flutter/material.dart';
+import 'package:store_app/app/core/theme/button_theme_app.dart';
+import 'package:store_app/app/core/theme/input_theme_app.dart';
 
 class ThemeApp {
   // Singleton
@@ -15,6 +17,10 @@ class ThemeApp {
         cursorColor: Colors.white,
         selectionColor: Colors.black.withValues(alpha: 0.5),
       ),
+      scaffoldBackgroundColor: Colors.white,
+      inputDecorationTheme: InputThemeApp.inputDecorationTheme(),
+      outlinedButtonTheme: ButtonThemeApp.outlinedButtonThemeData(),
+      elevatedButtonTheme: ButtonThemeApp.elevatedButtonThemeData(),
       appBarTheme: const AppBarTheme(
         elevation: 0,
         backgroundColor: Colors.black,

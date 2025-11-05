@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store_app/app/domain/repositories/favorites_repository.dart';
 import 'package:store_app/app/domain/responses/product/product_response.dart';
 import 'package:store_app/app/presentation/global/extensions/widgets_ext.dart';
+import 'package:store_app/app/presentation/global/utils/bottom_sheet_utils.dart';
 import 'package:store_app/app/presentation/global/widgets/scaffold/state_builder_gw.dart';
 import 'package:store_app/app/presentation/modules/product_detail/cubit/product_detail_cubit.dart';
 import 'package:store_app/app/presentation/modules/product_detail/cubit/product_detail_state.dart';
@@ -14,9 +15,9 @@ class ProductDetailView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ProductDetailCubit(
-        context.read<FavoritesRepository>(),
-      )..setProduct(product),
+      create: (context) =>
+          ProductDetailCubit(context.read<FavoritesRepository>())
+            ..setProduct(product),
       child: const _ProductDetailContent(),
     );
   }
@@ -34,10 +35,22 @@ class _ProductDetailContent extends StatelessWidget {
         title: const Text('Product Detail'),
         actions: [
           IconButton(
-            onPressed: () => cubit.toggleFavorite(),
-            icon: Icon(
-              isFavorite ? Icons.favorite : Icons.favorite_border,
-            ),
+            onPressed: () async {
+              if (isFavorite) {
+                cubit.toggleFavorite();
+              } else {
+                final customTitle = await showTextInputBottomSheet(
+                  context,
+                  labelText: 'Custom Title',
+                  initialValue: '',
+                );
+                if (customTitle == null || customTitle.isEmpty) {
+                  return;
+                }
+                cubit.toggleFavorite(customTitle: customTitle);
+              }
+            },
+            icon: Icon(isFavorite ? Icons.favorite : Icons.favorite_border),
           ),
         ],
       ),
@@ -59,17 +72,17 @@ class _ProductDetailContent extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Image.network(product.image).center,
-                    const SizedBox(height: 16),
+                    16.h,
                     Text(
                       product.title,
                       style: Theme.of(context).textTheme.headlineSmall,
                     ),
-                    const SizedBox(height: 8),
+                    8.h,
                     Text(
                       '\$ ${product.price}',
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
-                    const SizedBox(height: 16),
+                    16.h,
                     Text(product.description),
                   ],
                 ),

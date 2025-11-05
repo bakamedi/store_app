@@ -12,6 +12,7 @@ part 'app_database.g.dart';
 class FavoriteProducts extends Table {
   IntColumn get id => integer().autoIncrement()();
   IntColumn get productId => integer()();
+  TextColumn get customTitle => text()();
   TextColumn get title => text()();
   TextColumn get category => text()();
   TextColumn get description => text()();

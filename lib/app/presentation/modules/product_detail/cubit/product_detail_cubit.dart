@@ -22,7 +22,7 @@ class ProductDetailCubit extends Cubit<ProductDetailState> {
     });
   }
 
-  Future<void> toggleFavorite() async {
+  Future<void> toggleFavorite({String customTitle = ''}) async {
     if (state.product == null) return;
     if (state.isFavorite) {
       await _favoritesRepository.removeFavorite(state.product!.id);
