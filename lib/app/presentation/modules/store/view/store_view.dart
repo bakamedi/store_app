@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:store_app/app/presentation/global/extensions/widgets_ext.dart';
+import 'package:store_app/app/presentation/global/widgets/custom/item_gw.dart';
 import 'package:store_app/app/presentation/global/widgets/inputs/input_text_gw.dart';
 import 'package:store_app/app/presentation/global/widgets/scaffold/state_builder_gw.dart';
 import 'package:store_app/app/presentation/modules/store/cubit/store_cubit.dart';
@@ -10,7 +11,6 @@ import 'package:store_app/app/presentation/modules/store/cubit/store_state.dart'
 import 'package:store_app/app/presentation/modules/favorites/cubit/favorites_cubit.dart';
 import 'package:store_app/app/presentation/modules/favorites/cubit/favorites_state.dart';
 import 'package:store_app/app/presentation/router/app_routes/favorites_list_route.dart';
-import 'package:store_app/app/presentation/router/app_routes/product_detail_route.dart';
 
 class StoreView extends StatefulWidget {
   const StoreView({super.key});
@@ -96,7 +96,7 @@ class _StoreViewState extends State<StoreView> {
             empty: const Text('No products found.').center,
             builder: (context, state) {
               return GridView.builder(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(17.0),
                 itemCount: state.products.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
@@ -111,105 +111,21 @@ class _StoreViewState extends State<StoreView> {
                       final isFavorite = favoritesState.products.any(
                         (favProduct) => favProduct.id == product.id,
                       );
-                      return Card(
-                        elevation: 2.0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        child: InkWell(
-                          onTap: () => GoRouter.of(
-                            context,
-                          ).push(ProductDetailRoute.path, extra: product),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Expanded(
-                                child: Stack(
-                                  children: [
-                                    ClipRRect(
-                                      borderRadius: const BorderRadius.vertical(
-                                        top: Radius.circular(12.0),
-                                      ),
-                                      child: Image.network(
-                                        product.image,
-                                        fit: BoxFit.cover,
-                                        width: double.infinity,
-                                      ),
-                                    ),
-                                    Positioned(
-                                      top: 8.0,
-                                      right: 8.0,
-                                      child: IconButton(
-                                        icon: Icon(
-                                          isFavorite
-                                              ? Icons.favorite
-                                              : Icons.favorite_border,
-                                          color: isFavorite
-                                              ? Colors.red
-                                              : Colors.grey,
-                                        ),
-                                        onPressed: () {
-                                          if (isFavorite) {
-                                            context
-                                                .read<FavoritesCubit>()
-                                                .removeFavorite(product.id);
-                                          } else {
-                                            context
-                                                .read<FavoritesCubit>()
-                                                .addFavorite(
-                                                  product,
-                                                  product.title,
-                                                );
-                                          }
-                                        },
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  product.title,
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0,
-                                ),
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      Icons.star,
-                                      color: Colors.amber,
-                                      size: 16,
-                                    ),
-                                    const SizedBox(width: 4),
-                                    Text(
-                                      product.rating.rate.toStringAsFixed(1),
-                                      style: const TextStyle(fontSize: 12),
-                                    ),
-                                    const Spacer(),
-                                    Text(
-                                      '\$ ${product.price}',
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 16,
-                                        color: Colors.green,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              const SizedBox(height: 8.0),
-                            ],
-                          ),
-                        ),
+                      return ItemStoreGW(
+                        product: product,
+                        isFavorite: isFavorite,
+                        onFavoritePressed: () {
+                          if (isFavorite) {
+                            context.read<FavoritesCubit>().removeFavorite(
+                              product.id,
+                            );
+                          } else {
+                            context.read<FavoritesCubit>().addFavorite(
+                              product,
+                              product.title,
+                            );
+                          }
+                        },
                       );
                     },
                   );
