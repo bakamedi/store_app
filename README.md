@@ -34,9 +34,14 @@ Antes de empezar, asegúrate de tener instalado lo siguiente:
 
     ```bash
     flutter pub get
+
+3.  **Generar archivos de código (si es necesario):**
+
+    ```bash
+    dart run build_runner build --delete-conflicting-outputs
     ```
 
-3.  **Ejecuta la aplicación:**
+4.  **Ejecuta la aplicación:**
 
     ```bash
     flutter run
