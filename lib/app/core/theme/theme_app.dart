@@ -1,7 +1,9 @@
 // ignore_for_file: avoid-unused-parameters
 
 import 'package:flutter/material.dart';
+import 'package:store_app/app/core/theme/appbar_theme_app.dart';
 import 'package:store_app/app/core/theme/button_theme_app.dart';
+import 'package:store_app/app/core/theme/floating_action_button_theme_app.dart';
 import 'package:store_app/app/core/theme/input_theme_app.dart';
 
 class ThemeApp {
@@ -21,11 +23,9 @@ class ThemeApp {
       inputDecorationTheme: InputThemeApp.inputDecorationTheme(),
       outlinedButtonTheme: ButtonThemeApp.outlinedButtonThemeData(),
       elevatedButtonTheme: ButtonThemeApp.elevatedButtonThemeData(),
-      appBarTheme: const AppBarTheme(
-        elevation: 0,
-        backgroundColor: Colors.black,
-        foregroundColor: Colors.white,
-      ),
+      floatingActionButtonTheme:
+          FloatingActionButtonThemeApp.floatingActionButtonThemeData(),
+      appBarTheme: AppbarThemeApp.appBarTheme(),
     );
   }
 

@@ -19,6 +19,12 @@ class FavoritesView extends StatelessWidget {
           FavoritesCubit(context.read<FavoritesRepository>())..fetchFavorites(),
       child: Scaffold(
         appBar: AppBar(title: const Text('Favorites')),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            // TODO: Implement navigation to add new favorite product
+          },
+          child: const Icon(Icons.add),
+        ),
         body: BlocBuilder<FavoritesCubit, FavoritesState>(
           builder: (context, state) {
             return StateBuilderGW<FavoritesCubit, FavoritesState>(
