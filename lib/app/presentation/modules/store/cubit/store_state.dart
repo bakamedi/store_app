@@ -1,31 +1,35 @@
 import 'package:equatable/equatable.dart';
 import 'package:store_app/app/domain/responses/product/product_response.dart';
 
-abstract class StoreState extends Equatable {
-  const StoreState();
+enum StoreStatus { initial, loading, success, failure }
 
-  @override
-  List<Object> get props => [];
-}
-
-class StoreInitial extends StoreState {}
-
-class StoreLoading extends StoreState {}
-
-class StoreLoaded extends StoreState {
+class StoreState extends Equatable {
+  final StoreStatus status;
   final List<ProductResponse> products;
+  final String? errorMessage;
+  final bool isSearching;
 
-  const StoreLoaded(this.products);
+  const StoreState({
+    this.status = StoreStatus.initial,
+    this.products = const [],
+    this.errorMessage,
+    this.isSearching = false,
+  });
+
+  StoreState copyWith({
+    StoreStatus? status,
+    List<ProductResponse>? products,
+    String? errorMessage,
+    bool? isSearching,
+  }) {
+    return StoreState(
+      status: status ?? this.status,
+      products: products ?? this.products,
+      errorMessage: errorMessage ?? this.errorMessage,
+      isSearching: isSearching ?? this.isSearching,
+    );
+  }
 
   @override
-  List<Object> get props => [products];
-}
-
-class StoreError extends StoreState {
-  final String message;
-
-  const StoreError(this.message);
-
-  @override
-  List<Object> get props => [message];
+  List<Object?> get props => [status, products, errorMessage, isSearching];
 }
