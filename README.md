@@ -10,6 +10,31 @@ Una moderna aplicación de comercio electrónico construida con Flutter, diseña
 *   **Carrito de Compras:** Añade productos a tu carrito y gestiona tus selecciones.
 *   **Diseño Adaptable:** Optimizado para varios tamaños de pantalla y dispositivos.
 
+## Librerías Utilizadas
+
+Este proyecto utiliza las siguientes librerías y paquetes para su funcionamiento y desarrollo:
+
+### Dependencias Principales
+
+*   **`equatable`**: Simplifica las comprobaciones de igualdad de valores en Dart, comúnmente usado con BLoC/Cubit para la gestión de estados.
+*   **`flutter_bloc`**: Una popular librería de gestión de estados para Flutter, basada en el patrón BLoC (Business Logic Component).
+*   **`go_router`**: Un paquete de enrutamiento declarativo para Flutter, que simplifica la navegación.
+*   **`dio`**: Un potente cliente HTTP para Dart, utilizado para realizar solicitudes de red a APIs.
+*   **`json_annotation`**: Se utiliza con `json_serializable` para la serialización/deserialización automática de JSON.
+*   **`freezed_annotation`**: Se utiliza con `freezed` para generar clases de datos inmutables, uniones y clases selladas.
+*   **`drift`**: Una librería de persistencia reactiva para Flutter y Dart, construida sobre SQLite.
+
+### Dependencias de Desarrollo
+
+*   **`flutter_test`**: El framework de pruebas de Flutter.
+*   **`flutter_lints`**: Un conjunto de lints recomendados para fomentar buenas prácticas de codificación.
+*   **`build_runner`**: Una herramienta de generación de código utilizada para ejecutar generadores de código (como `freezed`, `json_serializable`, `drift_dev`).
+*   **`freezed`**: Generador de código para `freezed_annotation`.
+*   **`json_serializable`**: Generador de código para `json_annotation`.
+*   **`drift_dev`**: Generador de código para `drift`.
+
+
+
 ## Cómo Empezar
 
 Sigue estas instrucciones para obtener una copia del proyecto y ejecutarla en tu máquina local con fines de desarrollo y prueba.
