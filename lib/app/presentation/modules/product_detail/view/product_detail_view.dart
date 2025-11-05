@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:store_app/app/domain/repositories/favorites_repository.dart';
 import 'package:store_app/app/domain/responses/product/product_response.dart';
 import 'package:store_app/app/presentation/global/extensions/widgets_ext.dart';
 import 'package:store_app/app/presentation/global/widgets/scaffold/state_builder_gw.dart';
@@ -13,7 +14,9 @@ class ProductDetailView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ProductDetailCubit()..setProduct(product),
+      create: (context) => ProductDetailCubit(
+        context.read<FavoritesRepository>(),
+      )..setProduct(product),
       child: const _ProductDetailContent(),
     );
   }
@@ -24,8 +27,20 @@ class _ProductDetailContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.watch<ProductDetailCubit>();
+    final isFavorite = cubit.state.isFavorite;
     return Scaffold(
-      appBar: AppBar(title: const Text('Product Detail')),
+      appBar: AppBar(
+        title: const Text('Product Detail'),
+        actions: [
+          IconButton(
+            onPressed: () => cubit.toggleFavorite(),
+            icon: Icon(
+              isFavorite ? Icons.favorite : Icons.favorite_border,
+            ),
+          ),
+        ],
+      ),
       body: BlocBuilder<ProductDetailCubit, ProductDetailState>(
         builder: (context, state) {
           return StateBuilderGW<ProductDetailCubit, ProductDetailState>(
