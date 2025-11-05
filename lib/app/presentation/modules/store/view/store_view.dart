@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:store_app/app/presentation/global/extensions/widgets_ext.dart';
+import 'package:store_app/app/presentation/global/widgets/inputs/input_text_gw.dart';
 import 'package:store_app/app/presentation/global/widgets/scaffold/state_builder_gw.dart';
 import 'package:store_app/app/presentation/modules/store/cubit/store_cubit.dart';
 import 'package:store_app/app/presentation/modules/store/cubit/store_state.dart';
@@ -52,21 +53,11 @@ class _StoreViewState extends State<StoreView> {
             context.read<StoreCubit>().stopSearch();
           },
         ),
-        title: TextField(
-          controller: _searchController,
-          autofocus: true,
-          decoration: const InputDecoration(
-            hintText: 'Search products...',
-            border: InputBorder.none,
-          ),
-          style: const TextStyle(color: Colors.white),
-        ),
+        title: InputTextGW(controller: _searchController),
         actions: [
           IconButton(
             icon: const Icon(Icons.clear),
-            onPressed: () {
-              _searchController.clear();
-            },
+            onPressed: () => _searchController.clear(),
           ),
         ],
       );
